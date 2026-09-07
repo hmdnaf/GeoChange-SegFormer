@@ -5,9 +5,9 @@
 - **Target Task:** `TASK 5.4 — Run Full Tiled Export` (Preparation Only)
 - **Document Date:** 3 August 2026
 - **Authoritative Reference:** [docs/TASK.md](file:///h:/segFormer/docs/TASK.md)
-- **Execution Authority:** **BOOKKEEPING UPDATED AFTER AUTHORIZED BATCH_01, BATCH_02, BATCH_03, BATCH_04, AND BATCH_08 ONLY; NEXT BATCH NOT AUTHORIZED**
+- **Execution Authority:** **BOOKKEEPING UPDATED AFTER AUTHORIZED BATCH_01, BATCH_02, BATCH_03, BATCH_04, BATCH_05, BATCH_06, AND BATCH_08 ONLY; NEXT BATCH NOT AUTHORIZED**
 - **Purpose:** Define the comprehensive, non-executable technical strategy for a safe, auditable, batched full tiled export of the 5-band Sentinel-2 and ESA WorldCover dataset over Provinsi Sulawesi Selatan.
-- **Current milestone state:** M5 `PASS`; TASK 6.1 `PASS`; M6 `IN_PROGRESS`; production export artifacts `PREPARED`; batch_01, batch_02, batch_03, batch_04, and batch_08 production export, local raster audit, and Gate 4 are `PASS`; batch_01, batch_02, batch_03, batch_04, and batch_08 manifest rows are `AUDITED_PASS`; 25 of 55 production tiles passed; 30 production tiles remain.
+- **Current milestone state:** M5 `PASS`; TASK 6.1 `PASS`; M6 `IN_PROGRESS`; production export artifacts `PREPARED`; batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08 production export, local raster audit, and Gate 4 are `PASS`; batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08 manifest rows are `AUDITED_PASS`; 35 of 55 production tiles passed; 20 production tiles remain.
 
 ## 2. Current Verified Dataset State
 | Parameter | Authoritative Value | Source / Evidence |
@@ -25,9 +25,11 @@
 | **Accepted Production Batch_01** | `logs/batch_01_raster_audit.md` | 5/5 production GeoTIFFs exported, downloaded locally, automated local raster audit `PASS`, and Gate 4 `PASS` |
 | **Accepted Production Batch_02** | `logs/batch_02_raster_audit.md` | 5/5 production GeoTIFFs exported, downloaded locally, automated local raster audit `PASS`, and Gate 4 `PASS` |
 | **Accepted Production Batch_03** | `logs/batch_03_raster_audit.md` | 5/5 production GeoTIFFs exported, downloaded locally, automated local raster audit `PASS`, and Gate 4 `PASS` |
-| **Accepted Production Batch_04** | `logs/batch_04_raster_audit.md` | 5/5 production GeoTIFFs exported, downloaded locally, and automated local raster audit `PASS` |
+| **Accepted Production Batch_04** | `logs/batch_04_raster_audit.md` | 5/5 production GeoTIFFs exported, downloaded locally, automated local raster audit `PASS`, and Gate 4 `PASS` |
+| **Accepted Production Batch_05** | `logs/batch_05_raster_audit.md` | 5/5 production GeoTIFFs exported, downloaded locally, automated local raster audit `PASS`, and Gate 4 `PASS` |
+| **Accepted Production Batch_06** | `logs/batch_06_raster_audit.md` | 5/5 production GeoTIFFs exported, downloaded locally, automated local raster audit `PASS`, and Gate 4 `PASS` |
 | **Accepted Production Batch_08** | `logs/batch_08_raster_audit.md` | 5/5 production GeoTIFFs exported, downloaded locally, automated local raster audit `PASS`, and Gate 4 `PASS` |
-| **Latest Local Drive `H:` Free Space** | `6.095133 GiB` (`6,545,727,488 bytes`) | Batch_03 Gate-4 check recorded in `logs/batch_03_raster_audit.md` |
+| **Latest Local Drive `H:` Free Space** | `16.622383 GiB` (`17,848,147,968 bytes`) | Batch_06 Gate-4 check recorded in `logs/batch_06_raster_audit.md` |
 | **Local RAM Capacity** | `~7.35 GB` total visible (`~655 MB` free physical) | CPU-only development machine; requires windowed I/O |
 | **Local GPU Capacity** | Integrated AMD Radeon (No CUDA) | Training offloaded to Google Colab GPU |
 
@@ -139,7 +141,7 @@ pilot. They are not a statement that pilot export is still pending.
 - All three corrected V2 rasters have final pilot audit status: PASS.
 - `SULSEL_R005_C000` manual QGIS audit, including integer labels and visual
   image-label alignment: PASS.
-- Full 55-tile export: IN_PROGRESS; batch_01, batch_02, batch_03, batch_04, and batch_08 passed, and 30 production tiles remain.
+- Full 55-tile export: IN_PROGRESS; batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08 passed, and 20 production tiles remain.
 
 ## 7. Batch Export Strategy
 
@@ -189,7 +191,8 @@ Batch storage and risk analysis:
   ```
   Batch_01 is currently stored at `data/raw/full/batch_01/`; batch_03 is stored
   at `data/raw/full/batch_03/`; batch_04 is stored at
-  `data/raw/full/batch_04/`; batch_08 is stored at
+  `data/raw/full/batch_04/`; batch_06 is stored at
+  `data/raw/full/batch_06/`; batch_08 is stored at
   `data/raw/full/batch_08/`. Pilot rasters
   remain separate under `data/raw/pilot/`.
 
@@ -228,7 +231,7 @@ Batch storage and risk analysis:
   14. `expected_nodata`: `-9999`.
   15. `status`: one approved status value from the manifest lifecycle vocabulary above.
 
-Batch_01, batch_02, batch_03, batch_04, and batch_08 rows are the production rows currently promoted to
+Batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08 rows are the production rows currently promoted to
 `AUDITED_PASS` after local raster audit. Checksums, storage checks, and manual
 visual evidence are kept in batch audit records without adding manifest columns.
 
@@ -268,17 +271,17 @@ visual evidence are kept in batch audit records without adding manifest columns.
   - `[x]` Deterministic per-batch Google Drive folder convention verified against the production script and batch_04 output.
   - `[ ]` Local storage management and cleanup strategy approved.
 
-Batch_01, batch_02, batch_03, batch_04, and batch_08 are closed for bookkeeping only. These checked
+Batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08 are closed for bookkeeping only. These checked
 items do not authorize any next production batch.
 
 ### Gate 4 — After Each Production Batch (Batch Verification Gate)
 - **Closed-batch checklist status:**
-  - `[x]` GEE task reconciliation completed for each closed batch; batch_03 is PASS, 5/5.
-  - `[x]` Downloaded tile count matches each closed batch manifest count; batch_03 is PASS, 5/5.
-  - `[x]` Automated structural raster audit passed each closed batch; batch_03 is PASS, 5/5.
-  - `[x]` Human QGIS spot-check completed for at least 2 production tiles in each closed batch; batch_03 is PASS, exactly 2 tiles.
-  - `[x]` SHA-256 checksums computed for all rasters in each closed batch; batch_03 is PASS, 5/5.
-  - `[x]` Local drive `H:` free space audited for each closed batch; batch_03 is PASS, >3.0 GiB buffer maintained.
+  - `[x]` GEE task reconciliation completed for each closed batch; batch_06 is PASS, 5/5.
+  - `[x]` Downloaded tile count matches each closed batch manifest count; batch_06 is PASS, 5/5.
+  - `[x]` Automated structural raster audit passed each closed batch; batch_06 is PASS, 5/5.
+  - `[x]` Human QGIS spot-check completed for at least 2 production tiles in each closed batch; batch_06 is PASS, exactly 2 tiles.
+  - `[x]` SHA-256 checksums computed for all rasters in each closed batch; batch_06 is PASS, 5/5.
+  - `[x]` Local drive `H:` free space audited for each closed batch; batch_06 is PASS, >3.0 GiB buffer maintained.
 
 Batch_04 record:
 
@@ -389,6 +392,50 @@ Batch_03 record:
 - Human spot-check tiles: `SULSEL_R004_C002` and `SULSEL_R004_C004`
 - FINAL GATE-4 STATUS: PASS for batch_03 only
 
+Batch_05 record:
+
+- GEE preflight: PASS
+- GEE task creation: PASS
+- GEE task reconciliation: PASS, 5/5 COMPLETED
+- Google Drive completeness: PASS
+- Download reconciliation: PASS, 5/5
+- Automated structural raster audit: PASS, 5/5
+- Manifest status: AUDITED_PASS
+- Invalid label pixels: 0
+- Fractional labels: none
+- All-NoData tiles: none
+- Passed production tiles: 30 of 55
+- Remaining production tiles: 25
+- Audit record: `logs/batch_05_raster_audit.md`
+- SHA-256 capture: PASS, 5/5
+- Local storage >3.0 GiB: PASS (`5,461,147,648` bytes; `5.086090 GiB`)
+- Production QGIS visual evidence: present under `docs/evidence/batch05_qgis_spotcheck/`
+- Human QGIS spot-check: PASS, exactly 2 production tiles
+- Human spot-check tiles: `SULSEL_R006_C003` and `SULSEL_R005_C005`
+- FINAL GATE-4 STATUS: PASS for batch_05 only
+
+Batch_06 record:
+
+- GEE preflight: PASS
+- GEE task creation: PASS
+- GEE task reconciliation: PASS, 5/5 COMPLETED
+- Google Drive completeness: PASS
+- Download reconciliation: PASS, 5/5
+- Automated structural raster audit: PASS, 5/5
+- Manifest status: AUDITED_PASS
+- Invalid label pixels: 0
+- Fractional labels: none
+- All-NoData tiles: none
+- Passed production tiles: 35 of 55
+- Remaining production tiles: 20
+- Audit record: `logs/batch_06_raster_audit.md`
+- SHA-256 capture: PASS, 5/5
+- Local storage >3.0 GiB: PASS (`17,848,147,968` bytes; `16.622383 GiB`)
+- Production QGIS visual evidence: present under `docs/evidence/batch06_qgis_spotcheck/`
+- Human QGIS spot-check: PASS, exactly 2 production tiles
+- Human spot-check tiles: `SULSEL_R007_C006` and `SULSEL_R006_C005`
+- FINAL GATE-4 STATUS: PASS for batch_06 only
+
 ### Gate 5 — Full Export Completion (Final Acceptance Gate)
 - **Checklist:**
   - `[ ]` All required production rows are resolved under the approved `status` lifecycle.
@@ -400,7 +447,7 @@ Batch_03 record:
   - `[ ]` Final dataset audit report completed and signed off.
 
 ## 11. Storage Management
-- **Local Storage Constraint:** Project drive `H:\segFormer` has `6.095133 GiB` free space at the batch_03 Gate-4 check. 55 complete raw tiles represent `~26.2 GiB` raw reference before compression or format overhead.
+- **Local Storage Constraint:** Project drive `H:\segFormer` has `16.622383 GiB` free space at the batch_06 Gate-4 check. 55 complete raw tiles represent `~26.2 GiB` raw reference before compression or format overhead.
 - **Storage Management Rules:**
   1. **Batch Download Buffer:** Download no more than 1 batch (`5 tiles` ≈ `2.33 GiB` worst-case raw reference) at a time from Google Drive.
   2. **No Temporary Duplication:** Immediately delete Google Drive `.zip` download archives or redundant copies after extracting and verifying the `.tif` files. Never retain both `.zip` and `.tif` simultaneously.
@@ -479,7 +526,7 @@ GEE export tasks.
 
 ## 17. Final Planning Status
 ```text
-FULL EXPORT PLANNING STATUS: PRE-PRODUCTION ARTIFACTS PREPARED; BATCH_01, BATCH_02, BATCH_03, BATCH_04, AND BATCH_08 BOOKKEEPING CLOSED
+FULL EXPORT PLANNING STATUS: PRE-PRODUCTION ARTIFACTS PREPARED; BATCH_01, BATCH_02, BATCH_03, BATCH_04, BATCH_05, BATCH_06, AND BATCH_08 BOOKKEEPING CLOSED
 
 THREE-PILOT V2 EXPORT STATUS: COMPLETED
 
@@ -527,17 +574,33 @@ BATCH_03 MANIFEST STATUS: AUDITED_PASS
 
 BATCH_03 GATE-4 STATUS: PASS
 
-PASSED PRODUCTION TILES: 25 OF 55
+BATCH_05 PRODUCTION EXPORT STATUS: COMPLETED
 
-REMAINING PRODUCTION TILES: 30
+BATCH_05 LOCAL RASTER AUDIT STATUS: PASS
+
+BATCH_05 MANIFEST STATUS: AUDITED_PASS
+
+BATCH_05 GATE-4 STATUS: PASS
+
+BATCH_06 PRODUCTION EXPORT STATUS: COMPLETED
+
+BATCH_06 LOCAL RASTER AUDIT STATUS: PASS
+
+BATCH_06 MANIFEST STATUS: AUDITED_PASS
+
+BATCH_06 GATE-4 STATUS: PASS
+
+PASSED PRODUCTION TILES: 35 OF 55
+
+REMAINING PRODUCTION TILES: 20
 
 PRODUCTION TILE SIZE STATUS: APPROVED_FOR_PRODUCTION
 
 PRODUCTION EXPORT SCRIPT STATUS: PREPARED; BOTH SAFETY SWITCHES OFF
 
-PRODUCTION MANIFEST STATUS: 25 AUDITED_PASS; 30 EXPECTED_PENDING
+PRODUCTION MANIFEST STATUS: 35 AUDITED_PASS; 20 EXPECTED_PENDING
 
-TASK 5.4 EXECUTION STATUS: IN_PROGRESS; BATCH_01, BATCH_02, BATCH_03, BATCH_04, AND BATCH_08 PASS; 30 PRODUCTION TILES REMAIN
+TASK 5.4 EXECUTION STATUS: IN_PROGRESS; BATCH_01, BATCH_02, BATCH_03, BATCH_04, BATCH_05, BATCH_06, AND BATCH_08 PASS; 20 PRODUCTION TILES REMAIN
 
 M5 STATUS: PASS
 

@@ -9,8 +9,8 @@
 - Result: PASS, 5/5 automated local raster audits
 - Manifest update: batch_05 rows promoted from `EXPECTED_PENDING` to `AUDITED_PASS`
 
-Gate 4 is not complete yet. SHA-256 checksums and local storage >3 GiB
-validation are complete; human QGIS production spot-check remains pending.
+Gate 4 is complete for batch_05 only. SHA-256 checksums, local storage >3 GiB
+validation, and human QGIS production spot-check are complete.
 
 ## File Reconciliation
 
@@ -172,6 +172,7 @@ Each raster satisfies:
 - Batch_05 manifest statuses: AUDITED_PASS, 5/5
 - Production automated-audit PASS: 30 of 55
 - Production remaining: 25
+- Batch_05 Gate 4: PASS
 - M6 status: IN_PROGRESS
 - Patch extraction: NOT STARTED
 
@@ -193,23 +194,35 @@ Each raster satisfies:
 ## Human QGIS Production Spot-Check
 
 - Evidence directory: `docs/evidence/batch05_qgis_spotcheck/`
-- Production visual evidence already exists: NO
-- Status: PENDING_HUMAN_QGIS_SPOT_CHECK
+- Production visual evidence already exists: YES
+- Status: PASS
+- Tiles checked: exactly 2 production tiles
 
-Recommended human tiles:
+Evidence files:
 
-1. `SULSEL_R006_C003`
-   - Reason: extreme low coverage
-   - Valid pixels: 920
-   - NoData pixels: 24999080
-   - Coverage: 0.003680%
-   - Unique labels: 7 only
-   - Class 7 pixels: 920
-   - All-NoData: false
+- `batch05_qgis_r005_c005_01_label_unique_values.png`
+- `batch05_qgis_r005_c005_02_rgb_label_alignment.png`
+- `batch05_qgis_r006_c003_01_label_unique_values.png`
+- `batch05_qgis_r006_c003_02_rgb_label_alignment.png`
 
-2. `SULSEL_R005_C005`
-   - Reason: dense/high-coverage production tile
-   - Valid pixels: 22300280
-   - NoData pixels: 2699720
-   - Coverage: 89.201120%
-   - Unique labels: 0,1,2,3,4,5,7,8,9
+### SULSEL_R006_C003
+
+- Visual status: PASS
+- Band 5 observed values: 7
+- RGB bands: B4/B3/B2
+- RGB-label alignment: PASS
+- Systematic offset: NO
+- Rotation: NO
+- Flip: NO
+- Extreme low coverage expected: YES
+
+### SULSEL_R005_C005
+
+- Visual status: PASS
+- Band 5 observed values: 0,1,2,3,4,5,7,8,9
+- RGB bands: B4/B3/B2
+- RGB-label alignment: PASS
+- Systematic offset: NO
+- Rotation: NO
+- Flip: NO
+- Dense/high coverage expected: YES

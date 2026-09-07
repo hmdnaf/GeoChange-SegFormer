@@ -57,7 +57,7 @@ Dataset utama:
 | `gee/04_Dataset_Sample_Export.js` | Membuat stack 5 band dan export sample Makassar-Maros `SULSEL_DATASET_SAMPLE_003`. | PASS |
 | `gee/05_Export_Grid.js` | Membuat grid 50 km x 50 km dalam `EPSG:3857`, menghasilkan 55 tile berpotongan AOI. | PASS |
 | `gee/06_Pilot_Export.js` | Script pilot export 3 tile representatif dengan output 5000 x 5000 piksel. | Tiga pilot V2 selesai; final pilot audit PASS |
-| `gee/07_Full_Export.js` | Script produksi aman-by-default untuk 55 tile expected/pending, batch 5 tile, dan rerun tile spesifik. | PREPARED; both safety switches OFF; batch_01, batch_02, batch_03, batch_04, and batch_08 exported, audited, and Gate 4 PASS |
+| `gee/07_Full_Export.js` | Script produksi aman-by-default untuk 55 tile expected/pending, batch 5 tile, dan rerun tile spesifik. | PREPARED; both safety switches OFF; batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08 exported, audited, and Gate 4 PASS |
 
 ## Progres Aktual
 
@@ -78,12 +78,12 @@ Tahap yang sudah selesai:
 9. Export, final validation, dan automated raster audit 3 tile pilot V2; bukti manual QGIS label/alignment khusus tersedia untuk `SULSEL_R005_C000`.
 10. Automated raster auditor TASK 6.1.
 11. Safe production export script dan expected manifest untuk 55 tile.
-12. Batch_01, batch_02, batch_03, batch_04, and batch_08 production exports completed, downloaded locally, passed automated local raster audit, and passed Gate 4.
+12. Batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08 production exports completed, downloaded locally, passed automated local raster audit, and passed Gate 4.
 
 Tahap berikutnya dalam M6:
 
-Batch production export remains in progress. Batch_01, batch_02, batch_03, batch_04, and batch_08
-have passed Gate 4, 25 of 55 production tiles have passed, and 30 production tiles
+Batch production export remains in progress. Batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08
+have passed Gate 4, 35 of 55 production tiles have passed, and 20 production tiles
 remain. Do not start another GEE batch without explicit user authorization.
 
 ## Status Milestone
@@ -213,7 +213,7 @@ All eight accepted low-coverage evidence files exist under
 - Batch count: 11
 - Expected manifest: `data/raw/export_manifest.csv`
 - Manifest rows: 55
-- Manifest status: 20 `AUDITED_PASS`; 35 `EXPECTED_PENDING`
+- Manifest status: 35 `AUDITED_PASS`; 20 `EXPECTED_PENDING`
 - Production all-NoData policy: audit with `--fail-on-all-nodata`; all-NoData production tiles go to quarantine/review and must not proceed to patch creation
 - Batch_04 production export: COMPLETED
 - Batch_04 local raster audit: PASS
@@ -235,14 +235,22 @@ All eight accepted low-coverage evidence files exist under
 - Batch_03 local raster audit: PASS
 - Batch_03 manifest status: AUDITED_PASS
 - Batch_03 Gate-4 visual status: PASS
-- Passed production tiles: 25 of 55
-- Remaining production tiles: 30
+- Batch_05 production export: COMPLETED
+- Batch_05 local raster audit: PASS
+- Batch_05 manifest status: AUDITED_PASS
+- Batch_05 Gate-4 visual status: PASS
+- Batch_06 production export: COMPLETED
+- Batch_06 local raster audit: PASS
+- Batch_06 manifest status: AUDITED_PASS
+- Batch_06 Gate-4 visual status: PASS
+- Passed production tiles: 35 of 55
+- Remaining production tiles: 20
 
 ## Gap yang Belum Selesai
 
 1. Full export 55 tile belum selesai.
-2. Raw raster produksi 35 tile belum ada lokal.
-3. Audit raster seluruh tile produksi belum selesai; batch_01, batch_02, batch_03, batch_04, dan batch_08 sudah PASS.
+2. Raw raster produksi 20 tile belum ada lokal.
+3. Audit raster seluruh tile produksi belum selesai; batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, dan batch_08 sudah PASS.
 4. Patch dataset belum dibuat.
 5. Spatial train/validation/test split belum dibuat.
 6. PyTorch Dataset class belum dibuat.
@@ -258,10 +266,10 @@ All eight accepted low-coverage evidence files exist under
 Catatan current-state terbaru untuk bookkeeping M6:
 
 - M0-M5: PASS
-- M6: IN_PROGRESS; batch_01, batch_02, batch_03, batch_04, and batch_08 production exports completed, local raster audit PASS, and Gate 4 PASS
+- M6: IN_PROGRESS; batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, and batch_08 production exports completed, local raster audit PASS, and Gate 4 PASS
 - M7-M12: belum dimulai dan tertahan oleh dependency gate
-- passed production tiles: 25 of 55
-- remaining production tiles: 30
+- passed production tiles: 35 of 55
+- remaining production tiles: 20
 
 ## Rekomendasi Langkah Berikutnya
 
@@ -283,8 +291,8 @@ Repository ini sudah kuat pada tahap persiapan dataset di Google Earth Engine:
 - Automated raster auditor sudah tersedia dan berstatus PASS.
 - Safe production export script serta manifest expected/pending 55 tile sudah disiapkan.
 - Manual QGIS audit low-coverage `SULSEL_R005_C000` V2 berstatus PASS.
-- Batch_01, batch_02, batch_03, batch_04, dan batch_08 production export sudah selesai, masing-masing 5/5 raster lolos automated local raster audit, dan Batch_01, Batch_02, Batch_03, Batch_04, serta Batch_08 Gate 4 berstatus PASS.
+- Batch_01, batch_02, batch_03, batch_04, batch_05, batch_06, dan batch_08 production export sudah selesai, masing-masing 5/5 raster lolos automated local raster audit, dan Batch_01, Batch_02, Batch_03, Batch_04, Batch_05, Batch_06, serta Batch_08 Gate 4 berstatus PASS.
 
 Namun proyek belum masuk tahap machine learning utama. Belum ada patch dataset, DataLoader, model SegFormer, training, evaluasi, inferensi, atau peta prediksi final.
 
-**Status akhir saat ini: M5 PASS; TASK 6.1 PASS; M6 IN_PROGRESS; batch_01 Gate 4 PASS; batch_02 Gate 4 PASS; batch_03 Gate 4 PASS; batch_04 Gate 4 PASS; batch_08 Gate 4 PASS; 25/55 production tiles passed; 30 production tiles remain.**
+**Status akhir saat ini: M5 PASS; TASK 6.1 PASS; M6 IN_PROGRESS; batch_01 Gate 4 PASS; batch_02 Gate 4 PASS; batch_03 Gate 4 PASS; batch_04 Gate 4 PASS; batch_05 Gate 4 PASS; batch_06 Gate 4 PASS; batch_08 Gate 4 PASS; 35/55 production tiles passed; 20 production tiles remain.**
